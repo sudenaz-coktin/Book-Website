@@ -1,0 +1,496 @@
+/* Base Styles */
+body {
+    background-color: #2f0505;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    min-height: 100vh; /* Ekran boyuna göre ayarlanır */
+    margin: 0;
+    padding: 0;
+    background: url('pexels-nitin-arya-386173-1029141.jpg') center center / cover no-repeat;
+    background-attachment: fixed; /* Desktop için sabit */
+}
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    flex-wrap: wrap; /* Eklendi */
+}
+
+.logo {
+    margin: 0;
+    font-size: 48px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #2f0505;
+    flex-shrink: 0; /* Eklendi */
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    gap: 45px;
+    flex-wrap: wrap; /* Eklendi */
+}
+
+
+.navbar li {
+    margin-left: px;
+    white-space: nowrap; /* Eklendi */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #360404;
+    position: relative;
+    padding: 5px 0;
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffffff87;
+    transition: 0.5s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* Books Grid */
+.books-container {
+    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.book-item {
+    background: #00000089;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.book-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-cover-container {
+    position: relative;
+    width: 150px;
+    height: 220px;
+    margin: 0 auto 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.book-cover,
+.book-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.book-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.book-item:hover .book-video {
+    opacity: 1;
+}
+
+.book-item:hover .book-cover {
+    opacity: 0;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+}
+
+/* Fullscreen Overlay */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.93), rgba(47, 5, 5, 0.95));
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+}
+
+.fullscreen-overlay.show {
+    display: flex;
+    animation: fadeIn 0.6s ease;
+}
+
+.fullscreen-content {
+    max-width: 90%;
+    width: 900px;
+    max-height: 90vh;
+    background: linear-gradient(135deg, #000000, #1a0f08);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    transform: scale(0.8);
+    animation: scaleIn 0.5s ease forwards;
+    border: 2px solid rgba(255, 107, 107, 0.023);
+}
+
+.fullscreen-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fullscreen-right {
+    flex: 2;
+    text-align: left;
+}
+
+.fullscreen-book-cover {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.fullscreen-book-video,
+.fullscreen-book-video-desktop, 
+.fullscreen-book-video-mobile {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.fullscreen-book-video-desktop, 
+.fullscreen-book-video-mobile {
+    height: 200px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+
+
+.fullscreen-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 20px;
+}
+
+.fullscreen-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-top: -16px;
+}
+
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+    }
+
+.read-btn {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.read-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.heart-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px;
+}
+
+.heart-btn:hover {
+    color: #ff6b6b;
+}
+
+.heart-btn.liked {
+    color: #ff6b6b;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2f0505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #170202;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c413138d;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { 
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (min-width: 769px) {
+    .fullscreen-book-video-desktop {
+        display: block !important;
+        order: -1;
+    }
+    .fullscreen-book-video-mobile {
+        display: none !important;
+    }
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    .fullscreen-title {
+        order: 1;
+    }
+    .fullscreen-description {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 50px;
+        flex-direction: column; /* Eklendi */
+        text-align: center; /* Eklendi */
+        gap: 15px; /* Eklendi */
+    }
+    
+    .logo {
+        font-size: 35px;
+        margin-bottom: 10px; /* Eklendi */
+    }
+    
+    .navbar ul {
+        font-size: 20px;
+        gap: 20px; /* Değiştirildi */
+        justify-content: center; /* Eklendi */
+    }
+    
+    .fullscreen-content {
+        padding: 20px;
+        max-width: 95%;
+    }
+    
+    .fullscreen-book-cover {
+        width: 150px;
+        height: 225px;
+    }
+    
+    .fullscreen-title {
+        font-size: 22px;
+    }
+    
+    .fullscreen-description {
+        font-size: 14px;
+    }
+    
+    .books-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        padding: 30px 15px;
+    }
+    
+    .fullscreen-book-video-desktop {
+        display: none !important;
+    }
+    .fullscreen-book-video-mobile {
+        display: block !important;
+    }
+    .banner {
+        background-attachment: scroll; /* Mobilde akıcı olur */
+        min-height: 70vh; /* Küçük ekranlarda yüksekliği biraz düşür */
+    }
+    .banner {
+        min-height: 60vh; /* Çok küçük ekranlar için */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    .navbar ul {
+        font-size: 16px; /* Değiştirildi */
+        gap: 15px; /* Değiştirildi */
+        flex-direction: row; /* Eklendi */
+        flex-wrap: wrap; /* Eklendi */
+    }
+    
+    .fullscreen-content {
+        padding: 15px;
+    }
+    
+    .fullscreen-book-cover {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .fullscreen-title {
+        font-size: 18px;
+    }
+    
+    .fullscreen-description {
+        font-size: 13px;
+    }
+    
+    .books-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 20px 10px;
+    }
+    
+    .book-cover-container {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .read-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Dropdown menü */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none; /* Başlangıçta gizli */
+    position: absolute;
+    top: 100%; /* Menü altına gelmesi için */
+    left: 0;
+    background-color: #2f0505;
+    border-radius: 6px;
+    padding: 5px 0;
+    flex-direction: column;
+    gap: 0;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    background-color: #360404;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+}
+
+.dropdown-content button:hover {
+    background-color: #9d1d1d6f;
+}

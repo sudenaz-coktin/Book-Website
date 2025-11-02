@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Codex Anima</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #360404;
+            min-height: 100vh;
+            color: #9a9a9a;
+        }
+
+        .banner {
+            width: 100%;
+            min-height: 50vh;
+            margin: 0;
+            padding: 0;
+            background: url('pexels-nitin-arya-386173-1029141.jpg') center center / cover no-repeat;
+            background-repeat: no-repeat;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: none;
+            margin: 0;
+            padding: 30px 40px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 48px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #2f0505;
+            flex-shrink: 0;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            font-weight: bold;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            gap: 45px;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #360404;
+            position: relative;
+            padding: 5px 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #ffffff87;
+            transition: 0.5s;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2f0505;
+            border-radius: 6px;
+            padding: 5px 0;
+            min-width: 150px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-content button {
+            display: block;
+            width: 100%;
+            background-color: #360404;
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #9d1d1d6f;
+        }
+
+        .main-content {
+            margin-top: 60px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            color: rgb(0, 0, 0);
+            font-family: 'Times New Roman', Times, serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .about-section {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 165, 116, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mission-card, .vision-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 165, 116, 0.5);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .team-section {
+            margin-top: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 165, 116, 0.5);
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c1810, #d4a574);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            font-size: 1rem;
+            color: rgba(212, 165, 116, 0.8);
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                padding: 4px 50px;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                font-size: 35px;
+                margin-bottom: 10px;
+            }
+            
+            .navbar ul {
+                font-size: 20px;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 100px;
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .about-section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+            
+            .navbar ul {
+                font-size: 16px;
+                gap: 15px;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <nav class="navbar">
+            <div class="logo">Codex Anima</div>
+            <ul>
+                <li class="dropdown">
+                    <a href="#" id="turlerBtn">Türler</a>
+                    <div class="dropdown-content">
+                        <button onclick="filterBooks('kisisel-gelisim')">Kişisel Gelişim</button>
+                        <button onclick="filterBooks('bilim-kurgu')">Bilim Kurgu</button>
+                        <button onclick="filterBooks('edebiyat')">Edebiyat</button>
+                        <button onclick="filterBooks('roman')">Roman</button>
+                        <button onclick="filterBooks('siir')">Şiir</button>
+                    </div>
+                </li>
+                <li><a href="section.html">Ana Sayfa</a></li>
+                <li><a href="kitapligim.html">Kitaplığım</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Hakkımızda</h1>
+            <p class="page-subtitle">Codex Anima'nın hikayesi</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2 class="section-title">Hikayemiz</h2>
+                <p class="section-text">
+                    Codex Anima, kitap severlerin ruhuna dokunan bir deneyim yaratma tutkusuyla 2024 yılında kurulmuştur. 
+                    Kitapların sadece metin olmadığı, her birinin bir ruh taşıdığı inancıyla yola çıktık. Amacımız, 
+                    okuyucuları kitaplarla daha derin bir bağ kurmasını sağlamak ve her kitabın benzersiz hikayesini 
+                    görsel ve interaktif deneyimlerle harmanlayarak sunmaktır.
+                </p>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <span class="card-icon">🎯</span>
+                    <h3 class="card-title">Misyonumuz</h3>
+                    <p class="card-text">
+                        Kitap okuma deneyimini teknoloji ile harmanlayarak, her yaştan okuyucunun kitaplarla 
+                        daha derin bağlar kurmasını sağlamak ve okuma kültürünü yaygınlaştırmak.
+                    </p>
+                </div>
+
+                <div class="vision-card">
+                    <span class="card-icon">🔮</span>
+                    <h3 class="card-title">Vizyonumuz</h3>
+                    <p class="card-text">
+                        Gelecekte, kitapların dijital dünyada yaşayan ruhu haline gelerek, okuyucuların 
+                        hayal dünyalarını genişleten ve ilham veren bir platform olmak.
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">Neden Codex Anima?</h2>
+                <p class="section-text">
+                    "Codex Anima" ismimiz Latince'den gelmektedir. "Codex" kitap anlamında, "Anima" ise ruh demektir. 
+                    Biz her kitabın bir ruhu olduğuna ve bu ruhun okuyucuya dokunması gerektiğine inanıyoruz. 
+                    Platformumuzda kitaplar sadece kapak fotoğrafları değil, hareketli görsellerle ve etkileşimli 
+                    deneyimlerle canlanır. Her kitap, kendi hikayesini anlatır ve okuyucuyla özel bir bağ kurar.
+                </p>
+            </div>
+
+            <div class="about-section team-section">
+                <h2 class="section-title">Ekibimiz</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">👨‍💻</div>
+                        <h4 class="member-name">Sude Kara</h4>
+                        <p class="member-role">Kurucu & Geliştirici</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">📚</div>
+                        <h4 class="member-name">Furkan Kaya</h4>
+                        <p class="member-role">İçerik Editörü</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">🎨</div>
+                        <h4 class="member-name">Kaan Börü</h4>
+                        <p class="member-role">Tasarım Uzmanı</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">Değerlerimiz</h2>
+                <p class="section-text">
+                    • <strong>Kalite:</strong> Her kitap özenle seçilir ve sunulur<br><br>
+                    • <strong>İnovasyon:</strong> Teknoloji ve edebiyatı harmanlayarak yeni deneyimler yaratırız<br><br>
+                    • <strong>Topluluk:</strong> Kitap severler topluluğunu güçlendiririz<br><br>
+                    • <strong>Erişilebilirlik:</strong> Herkesin kaliteli kitaplara ulaşabilmesi için çalışırız
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dropdown menü işlevselliği
+        const turlerBtn = document.getElementById('turlerBtn');
+        const dropdownContent = turlerBtn.nextElementSibling;
+
+        turlerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!turlerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        function filterBooks(category) {
+            // Bu fonksiyon ana sayfaya yönlendirme yapabilir
+            console.log('Kategori seçildi:', category);
+        }
+    </script>
+</body>
+</html>
